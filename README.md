@@ -21,4 +21,4 @@ Contribuir
 Licença
 ================================================================================
 
-Wild Exame está licenciado sobre a Apache License, Version 2.0. Para a licença completa veja o ficheiro LICENSE.
+`Wild Exame` está licenciado sobre a Apache License, Version 2.0. Para a licença completa veja o ficheiro LICENSE.
