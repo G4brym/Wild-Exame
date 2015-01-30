@@ -3,6 +3,7 @@
 
 <ul class="nav nav-tabs">
   <li class="active"><a aria-expanded="true" href="#options" data-toggle="tab">Opções</a></li>
+  <li class=""><a aria-expanded="false" href="#especialDates" data-toggle="tab">Épocas Espeçiais De Recuperação</a></li>
   <li class=""><a aria-expanded="false" href="#tprofessor" data-toggle="tab">Importar Do TProfessor</a></li>
   <li class=""><a aria-expanded="false" href="#importEmails" data-toggle="tab">Importar Emails</a></li>
 </ul>
@@ -151,6 +152,106 @@
 		
   </div>
  
+  <div class="tab-pane fade" id="especialDates">
+	  
+	<div class="col-md-12">
+		<div class="well">
+					<ul class="nav nav-tabs">
+					  <li class="active"><a href="#list" data-toggle="tab">Lista</a></li>
+					  <li><a href="#add" data-toggle="tab">Adicionar</a></li>
+					</ul>
+					<div id="dates" class="tab-content">
+					  <div class="tab-pane fade active in" id="list"><br>
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Dia</th>
+                                            <th>Mês</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+<?php 
+
+foreach(especialDates::getList() as $date){
+	echo "<tr>";
+	echo "<td>" . $date->title . "</td>";
+	echo "<td>" . $date->day . "</td>";
+	echo "<td>" . $date->month . "</td>";
+	echo "<td> <button type=\"button\" class=\"btn btn-danger\" onclick=\"closeTicket".$date->id."()\">Remover</button> </td>";
+	echo "</tr>";
+	echo "<!-- Script do evento -->
+<script>
+function closeTicket".$date->id."() {
+swal({
+          title: \"Tens a certeza?\",
+          text: \"A Data Será Removida.\",
+          type: \"warning\",
+          showCancelButton: true,
+          confirmButtonColor: \"#DD6B55\",
+          confirmButtonText: \"Sim, Remova A data!\",
+          closeOnConfirm: false
+        },
+        function(){
+          var url = document.URL + \"/remove?id=".$date->id."\";
+          window.location.href = url; 
+        });
+};
+</script>";
+}
+
+?>
+                                    </tbody>
+                                </table>
+					  </div>
+						
+					  <div class="tab-pane fade" id="add"><br>
+
+			{{ Form::open(array('route' => 'addEspecialDate', 'class'=>'form-horizontal')) }}
+			  <fieldset>
+
+						<div class="form-group">
+						  <label for="siteName" class="col-lg-2 control-label">Nome</label>
+						  <div class="col-lg-4">
+							{{ Form::text('Name', null, array('class' => 'form-control', 'required' => 'required', 'placeholder' => 'Nome que vai identificar a data')) }}
+						  </div>
+						</div>
+				  		
+				  		<br>
+				  
+						<div class="form-group">
+						  <label for="day" class="col-lg-2 control-label">Dia</label>
+						  <div class="col-lg-4">
+							{{ Form::text('day', null, array('class' => 'form-control', 'required' => 'required', 'placeholder' => 'Dia em que se vai realizar')) }}
+						  </div>
+						</div>
+						<div class="form-group">
+						  <label for="month" class="col-lg-2 control-label">Mês</label>
+						  <div class="col-lg-4">
+							{{ Form::text('month', null, array('class' => 'form-control', 'required' => 'required', 'placeholder' => 'Mês em que se vai realizar')) }}
+						  </div>
+						</div>
+				  
+				  <hr>
+				  
+				<div class="form-group">
+				  <div class="col-lg-10 col-lg-offset-2">
+					{{Form::submit('Adicionar', array('class'=>'btn btn-warning'))}}
+				  </div>
+				</div>
+			  </fieldset>
+			{{ Form::close() }}
+						
+					  </div>
+						
+				</div>
+		</div>
+	</div>
+	  
+  </div>
+
   <div class="tab-pane fade" id="tprofessor">
 	  
 	<div class="col-md12">

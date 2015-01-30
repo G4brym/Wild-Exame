@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{URL::to('/panel/news')}}">
+                        <a href="{{URL::to('/exams')}}">
                             <div class="panel-footer">
                                 <span class="pull-left">Ver</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

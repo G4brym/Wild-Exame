@@ -8,6 +8,12 @@ class PanelController extends BaseController {
 		return View::make('panel.index')->with('title', $title);
 	}
 	
+	public function showExams()
+	{
+		$title=settings::get("siteName") . " Marcar Exames";
+		return View::make('panel.exams')->with('title', $title);
+	}
+	
 	public function showAPI()
 	{
 		return View::make('layouts.api');

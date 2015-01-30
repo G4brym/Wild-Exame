@@ -37,6 +37,7 @@ Route::group(array('before' => 'auth'), function()
 {
     //Painel de controlo
     Route::get('/admin', 'PanelController@showAdmin');
+    Route::get('/exams', 'PanelController@showExams');
     Route::get('/calendar', 'PanelController@showCalendar');
 
     //Utilizador
@@ -60,6 +61,7 @@ Route::group(array('before' => 'isAdmin'), function()
 	Route::get('/admin/gen', 'PanelController@genToken');
     Route::post('importTP', array('before'=>'csrf', 'as' => 'importTP', 'uses'=>'PanelController@importFromTProfessor'));
     Route::post('saveSettings', array('before'=>'csrf', 'as' => 'saveSettings', 'uses'=>'PanelController@saveSettings'));
+    Route::post('addEspecialDate', array('before'=>'csrf', 'as' => 'addEspecialDate', 'uses'=>'PanelController@addEspecialDate'));
     Route::post('importEmails', array('before'=>'csrf', 'as' => 'importEmails', 'uses'=>'PanelController@importEmails'));
 });
 
