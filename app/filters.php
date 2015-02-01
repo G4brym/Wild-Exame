@@ -49,7 +49,7 @@ Route::filter('auth', function()
 	}
 });
 
-Route::filter('isAdmin', function()
+Route::filter('admin', function()
 {
 	if (Auth::guest())
 	{

@@ -37,6 +37,16 @@ class PanelController extends BaseController {
 		return Redirect::to(URL::to('admin'))->With('success', 'Novo Token Gerado');
 	}
 	
+	public function removeDate()
+	{
+		if(isset($_GET['id'])){
+			return array_keys(especialDates::getList());
+			return Redirect::to(URL::to('admin'))->With('success', 'Data Removida');
+		} else {
+			return Redirect::to(URL::to('admin'))->WithErrors('Data Não Encontrada');
+		}
+	}
+	
 	public function saveSettings()
 	{
 		Input::merge(array_map('trim', Input::all()));
@@ -84,6 +94,24 @@ class PanelController extends BaseController {
 			}
 			
 			return Redirect::to(URL::to('admin'))->With('success', 'Defenições Guardadas');
+			
+		} else {
+			return Redirect::to(URL::to('admin'))->withInput()->WithErrors($v);
+		}
+	}
+	
+	public function addEspecialDate()
+	{
+		Input::merge(array_map('trim', Input::all()));
+		$input = Input::all();
+		$rules = array('name' => 'required', 'day' => 'required', 'month' => 'required');
+		$v = Validator::make($input, $rules);
+		if ($v->passes())
+		{
+			
+			
+			
+			return Redirect::to(URL::to('admin'))->With('success', 'Data Criada');
 			
 		} else {
 			return Redirect::to(URL::to('admin'))->withInput()->WithErrors($v);

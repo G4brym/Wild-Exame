@@ -180,26 +180,26 @@ foreach(especialDates::getList() as $date){
 	echo "<td>" . $date->title . "</td>";
 	echo "<td>" . $date->day . "</td>";
 	echo "<td>" . $date->month . "</td>";
-	echo "<td> <button type=\"button\" class=\"btn btn-danger\" onclick=\"closeTicket".$date->id."()\">Remover</button> </td>";
+	echo "<td> <button type=\"button\" class=\"btn pull-right btn-danger\" onclick=\"closeTicket".$date->id."()\">Remover</button> </td>";
 	echo "</tr>";
 	echo "<!-- Script do evento -->
-<script>
-function closeTicket".$date->id."() {
-swal({
-          title: \"Tens a certeza?\",
-          text: \"A Data Será Removida.\",
-          type: \"warning\",
-          showCancelButton: true,
-          confirmButtonColor: \"#DD6B55\",
-          confirmButtonText: \"Sim, Remova A data!\",
-          closeOnConfirm: false
-        },
-        function(){
-          var url = document.URL + \"/remove?id=".$date->id."\";
-          window.location.href = url; 
-        });
-};
-</script>";
+		<script>
+		function closeTicket".$date->id."() {
+		swal({
+				  title: \"Tens a certeza?\",
+				  text: \"A Data Será Removida.\",
+				  type: \"warning\",
+				  showCancelButton: true,
+				  confirmButtonColor: \"#DD6B55\",
+				  confirmButtonText: \"Sim, Remova A data!\",
+				  closeOnConfirm: false
+				},
+				function(){
+				  var url = document.URL + \"/remove?id=".$date->id."\";
+				  window.location.href = url; 
+				});
+		};
+		</script>";
 }
 
 ?>
