@@ -27,7 +27,7 @@ class LoginController extends BaseController {
 				$rules = array('user' => 'required|email', 'password' => 'required', 'g-recaptcha-response' => 'required|recaptcha');
 			}
 			else {
-				$rules = array('name' => 'required', 'password' => 'required', 'g-recaptcha-response' => 'required|recaptcha');
+				$rules = array('user' => 'required', 'password' => 'required', 'g-recaptcha-response' => 'required|recaptcha');
 			}
 		} else {
 		    if(filter_var($input['user'], FILTER_VALIDATE_EMAIL)) {

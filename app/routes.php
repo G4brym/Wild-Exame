@@ -36,6 +36,7 @@ Route::get('/login', 'LoginController@showLogin');
 Route::group(array('before' => 'auth'), function()
 {
     //Painel de controlo
+    Route::get('/admin', 'PanelController@showAdmin');
     Route::get('/exams', 'PanelController@showExams');
     Route::get('/calendar', 'PanelController@showCalendar');
 
@@ -57,7 +58,6 @@ Route::group(array('before' => 'authWM'), function()
 //Tem de ser admin para poder executar
 Route::group(array('before' => 'admin'), function()
 {
-    Route::get('/admin', 'PanelController@showAdmin');
 	Route::get('/admin/gen', 'PanelController@genToken');
 	Route::get('/admin/remove', 'PanelController@removeDate');
     Route::post('importTP', array('before'=>'csrf', 'as' => 'importTP', 'uses'=>'PanelController@importFromTProfessor'));

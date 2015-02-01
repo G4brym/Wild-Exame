@@ -40,7 +40,7 @@ class PanelController extends BaseController {
 	public function removeDate()
 	{
 		if(isset($_GET['id'])){
-			return array_keys(especialDates::getList());
+			especialDates::remove($_GET['id']);
 			return Redirect::to(URL::to('admin'))->With('success', 'Data Removida');
 		} else {
 			return Redirect::to(URL::to('admin'))->WithErrors('Data Não Encontrada');
@@ -109,7 +109,19 @@ class PanelController extends BaseController {
 		if ($v->passes())
 		{
 			
+			if($input['day'] < 1 || $input['day'] > 31){
+				return Redirect::to(URL::to('admin'))->withInput()->WithErrors("Os dias do mês apenas vão de 1 a 31");
+			}
 			
+			if($input['month'] < 1 || $input['month'] > 12){
+				return Redirect::to(URL::to('admin'))->withInput()->WithErrors("Os meses do ano apenas vão de 1 a 12");
+			}
+			
+			if($input['month'] == 2 && $input['day'] > 29){
+				return Redirect::to(URL::to('admin'))->withInput()->WithErrors("O mês de Fevereiro não pode ter mais que 29 dias");
+			}
+			
+			especialDates::add($input['name'], $input['day'], $input['month']);
 			
 			return Redirect::to(URL::to('admin'))->With('success', 'Data Criada');
 			

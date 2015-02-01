@@ -174,37 +174,47 @@
                                     </thead>
                                     <tbody>
 <?php 
+$dates = especialDates::getList();
+if(count($dates)){
 
-foreach(especialDates::getList() as $date){
-	echo "<tr>";
-	echo "<td>" . $date->title . "</td>";
-	echo "<td>" . $date->day . "</td>";
-	echo "<td>" . $date->month . "</td>";
-	echo "<td> <button type=\"button\" class=\"btn pull-right btn-danger\" onclick=\"closeTicket".$date->id."()\">Remover</button> </td>";
-	echo "</tr>";
-	echo "<!-- Script do evento -->
-		<script>
-		function closeTicket".$date->id."() {
-		swal({
-				  title: \"Tens a certeza?\",
-				  text: \"A Data Será Removida.\",
-				  type: \"warning\",
-				  showCancelButton: true,
-				  confirmButtonColor: \"#DD6B55\",
-				  confirmButtonText: \"Sim, Remova A data!\",
-				  closeOnConfirm: false
-				},
-				function(){
-				  var url = document.URL + \"/remove?id=".$date->id."\";
-				  window.location.href = url; 
-				});
-		};
-		</script>";
+	foreach(especialDates::getList() as $date){
+		echo "<tr>";
+		echo "<td>" . $date->ed_name . "</td>";
+		echo "<td>" . $date->ed_day . "</td>";
+		echo "<td>" . $date->ed_month . "</td>";
+		echo "<td> <button type=\"button\" class=\"btn pull-right btn-danger\" onclick=\"closeTicket".$date->ed_id."()\">Remover</button> </td>";
+		echo "</tr>";
+		echo "<!-- Script do evento -->
+			<script>
+			function closeTicket".$date->ed_id."() {
+			swal({
+					  title: \"Tens a certeza?\",
+					  text: \"A Data Será Removida.\",
+					  type: \"warning\",
+					  showCancelButton: true,
+					  confirmButtonColor: \"#DD6B55\",
+					  confirmButtonText: \"Sim, Remova A data!\",
+					  closeOnConfirm: false
+					},
+					function(){
+					  var url = document.URL + \"/remove?id=".$date->ed_id."\";
+					  window.location.href = url; 
+					});
+			};
+			</script>";
+	}
 }
 
 ?>
                                     </tbody>
                                 </table>
+						  
+<?php
+if(!count($dates)){
+	echo "<center><h4>Não existe nenhuma data especial guardada.</h4></center>";
+}
+?>
+						  
 					  </div>
 						
 					  <div class="tab-pane fade" id="add"><br>
@@ -213,24 +223,29 @@ foreach(especialDates::getList() as $date){
 			  <fieldset>
 
 						<div class="form-group">
-						  <label for="siteName" class="col-lg-2 control-label">Nome</label>
+						  <label for="name" class="col-lg-2 control-label">Nome</label>
 						  <div class="col-lg-4">
-							{{ Form::text('Name', null, array('class' => 'form-control', 'required' => 'required', 'placeholder' => 'Nome que vai identificar a data')) }}
+							{{ Form::text('name', null, array('class' => 'form-control', 'required' => 'required', 'placeholder' => 'Nome que vai identificar a data')) }}
 						  </div>
 						</div>
 				  		
 				  		<br>
 				  
+<?php
+$days = array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10, 11 => 11, 12 => 12, 13 => 13, 14 => 14, 15 => 15, 16 => 16, 17 => 17, 18 => 18, 19 => 19, 20 => 20, 21 => 21, 22 => 22, 23 => 23, 24 => 24, 25 => 25, 26 => 26, 27 => 27, 28 => 28, 29 => 29, 30 => 30, 31 => 31);
+$months = array(1 => "Janeiro", 2 => "Fevereiro", 3 => "Março", 4 => "Abril", 5 => "Maio", 6 => "Junho", 7 => "Julho", 8 => "Agosto", 9 => "Setembro", 10 => "Outubro", 11 => "Novembro", 12 => "Dezembro");
+?>
+
 						<div class="form-group">
 						  <label for="day" class="col-lg-2 control-label">Dia</label>
 						  <div class="col-lg-4">
-							{{ Form::text('day', null, array('class' => 'form-control', 'required' => 'required', 'placeholder' => 'Dia em que se vai realizar')) }}
+							{{ Form::select('day', $days, null, ['class' => 'form-control']) }}
 						  </div>
 						</div>
 						<div class="form-group">
 						  <label for="month" class="col-lg-2 control-label">Mês</label>
 						  <div class="col-lg-4">
-							{{ Form::text('month', null, array('class' => 'form-control', 'required' => 'required', 'placeholder' => 'Mês em que se vai realizar')) }}
+							{{ Form::select('month', $months, null, ['class' => 'form-control']) }}
 						  </div>
 						</div>
 				  

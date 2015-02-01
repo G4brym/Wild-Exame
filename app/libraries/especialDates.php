@@ -4,56 +4,34 @@ Class especialDates {
 
     public static function getList(){
 
-		$file = base_path() . "/app/config/especialDates.json";
-		
-		try {
-		    $data = json_decode(file_get_contents($file));
-		} catch (ParseException $e) {
-		    printf("Can´t open the json file: %s", $e->getMessage());
-		}
+		$list = DB::table('dates')->get();
 
-		return $data->dates;
+		return $list;
 		
     }
 	
     public static function remove($id){
 
-		$file = base_path() . "/app/config/especialDates.json";
-		$dates = especialDates::getList();
-		
-		try {
-		    $data = json_decode(file_get_contents($file),true);
-			$data[$setting] = $value;
- 
-			foreach($dates as $date){
-				if($date->id == $id){
-					unset($dates[])
-				}
-			}
-			
-			$fh = fopen($file, 'w');
-			fwrite($fh, json_encode($data,JSON_UNESCAPED_UNICODE));
-			fclose($fh);
-			
-		} catch (ParseException $e) {
-		    printf("Can´t write in the json file: %s", $e->getMessage());
+		if(especialDates::test($id)){
+			DB::table('dates')->where('ed_id', $id)->delete();
 		}
 
     }
 	
-    public static function add(){
+    public static function add($name, $day, $month){
 
+		DB::table('dates')->insert(array('ed_name' => $name, 'ed_day' => $day, 'ed_month' => $month));
+		
     }
 	
     public static function test($id){
 
-			foreach(especialDates::getList() as $date){
-				if($date->id == $id){
-					return true;
-				}
-			}
-		
+		$date = DB::table('dates')->where('ed_id', $id)->first();
+		if(count($date)){
+			return true;
+		} else {
 			return false;
+		}
 		
     }
 }

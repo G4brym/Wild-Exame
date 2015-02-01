@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://port-80.0302rfpvh5kd42t91ioasnbqx2zqia4illq99v5hu4dt2o6r.box.codeanywhere.com',
+	'url' => 'http://port-80.3w53d9chy9pgy14iaxdztmdkr4tpgb9dl8yzoozrv841jor.box.codeanywhere.com',
 
 	/*
 	|--------------------------------------------------------------------------
