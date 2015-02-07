@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'laravel',
-			'username'  => 'laravel',
-			'password'  => 'Pzcq9cbMpPxzhnUT',
+			'database'  => 'wildexame',
+			'username'  => 'wildexame',
+			'password'  => 'KtVeXSW2PEuNNTDK',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
