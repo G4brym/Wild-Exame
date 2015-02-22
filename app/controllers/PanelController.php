@@ -37,6 +37,28 @@ class PanelController extends BaseController {
 		return Redirect::to(URL::to('admin'))->With('success', 'Novo Token Gerado');
 	}
 	
+	public function markExame()
+	{
+		Input::merge(array_map('trim', Input::all()));
+		$input = Input::all();
+		$rules = array('module' => 'required', 'date' => 'required');
+		$v = Validator::make($input, $rules);
+		if ($v->passes())
+		{
+			
+			if(!count(DB::table('dates')->where('ed_id', '=', $input['date'])->first()) || !count(DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_mod', '=', $input['module'])->first())){
+				return Redirect::to(URL::to('exams'))->withInput()->WithErrors('Ocorreu Um Erro Com A Marcação Do Exame');
+			}
+			
+			DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_mod', '=', $input['module'])->update(array('um_date' => $input['date']));
+			
+			return Redirect::to(URL::to('exams'))->With('success', 'Exame Marcado');
+			
+		} else {
+			return Redirect::to(URL::to('exams'))->withInput()->WithErrors($v);
+		}
+	}
+	
 	public function removeDate()
 	{
 		if(isset($_GET['id'])){

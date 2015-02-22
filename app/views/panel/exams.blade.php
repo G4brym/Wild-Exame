@@ -1,8 +1,8 @@
 @extends('layouts.panel')
 @section('body')
 <?php
-$modules = DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_grade', '=', null)->get();
-if(count($modules)) {
+if(count(DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_grade', '=', null)->get())) {
+	$modules = DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_grade', '=', null)->get();
 	foreach($modules as $module){
 		$mod = DB::table('modules')->where('m_id', '=', $module->um_mod)->first();
 	
@@ -20,7 +20,7 @@ if(count($modules)) {
 
 	<div class="col-md12">
 		<div class="well">
-			{{ Form::open(array('route' => 'saveSettings', 'class'=>'form-horizontal')) }}
+			{{ Form::open(array('route' => 'markExame', 'class'=>'form-horizontal')) }}
 			  <fieldset>
 				  <legend>Marcar Exames</legend>
 						  
