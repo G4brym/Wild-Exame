@@ -46,11 +46,15 @@ class PanelController extends BaseController {
 		if ($v->passes())
 		{
 			
-			if(!count(DB::table('dates')->where('ed_id', '=', $input['date'])->first()) || !count(DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_mod', '=', $input['module'])->first())){
+			if(!count(DB::table('dates')->where('ed_id', '=', $input['date'])->first()) || !count(DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_mod', '=', $input['module'])->where('um_date', '=', null)->where('um_grade', '=', null)->first())){
 				return Redirect::to(URL::to('exams'))->withInput()->WithErrors('Ocorreu Um Erro Com A Marcação Do Exame');
 			}
 			
-			DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_mod', '=', $input['module'])->update(array('um_date' => $input['date']));
+			if(DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_mod', '=', $input['module'])->update(array('um_date' => $input['date']))) {
+				return Redirect::to(URL::to('exams'))->With('success', '1');
+			} else {
+				return Redirect::to(URL::to('exams'))->With('success', $input['module']. ' '. Auth::user()->id);
+			}
 			
 			return Redirect::to(URL::to('exams'))->With('success', 'Exame Marcado');
 			

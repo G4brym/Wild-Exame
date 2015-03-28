@@ -1,8 +1,8 @@
 @extends('layouts.panel')
 @section('body')
 <?php
-if(count(DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_grade', '=', null)->get())) {
-	$modules = DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_grade', '=', null)->get();
+if(count(DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_grade', '=', null)->where('um_date', '=', null)->get())) {
+	$modules = DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_grade', '=', null)->where('um_date', '=', null)->get();
 	foreach($modules as $module){
 		$mod = DB::table('modules')->where('m_id', '=', $module->um_mod)->first();
 	

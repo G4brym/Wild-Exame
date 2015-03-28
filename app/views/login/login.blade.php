@@ -52,15 +52,12 @@
 			            <div class="col-md-12">
 			                <div class="control-wrapper">
 			                    {{Form::submit('Login', array('class'=>'btn btn-info'))}}
-			                    <a href="https://www.shoot2kill.ovh/forgot" class="text-right pull-right">Esqueci-me da Password?</a>
+			                    <a href="{{  URL::to('forgot')}}" class="text-right pull-right">Esqueci-me da Password?</a>
 			                </div>
 			            </div>
 			        </div>
 
 			    {{ Form::close() }}
-		      <div class="text-center">
-		      	<a href="https://www.shoot2kill.ovh/register" class="templatemo-create-new">Criar Conta <i class="fa fa-arrow-circle-o-right"></i></a>	
-		      </div>
 		</div>
 	</div>
 @stop

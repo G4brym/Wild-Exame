@@ -36,7 +36,11 @@ Class calendar {
 					$calendar.= '<div class="day-number">'.$list_day.'</div>';
 
 					/** QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY !!  IF MATCHES FOUND, PRINT THEM !! **/
-					$calendar.= str_repeat('<p>' . $dates[$list_day] . '</p>',2);
+					if(isset($dates[$list_day])) {
+						$calendar.= str_repeat('<p>' . $dates[$list_day] . '</p>',1);
+					} else {
+						$calendar.= str_repeat('<p>' . '</p>',2);
+					}
 
 				$calendar.= '</td>';
 				if($running_day == 6):
@@ -98,7 +102,11 @@ Class calendar {
 					$calendar.= '<div class="day-number">'.$list_day.'</div>';
 
 					/** QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY !!  IF MATCHES FOUND, PRINT THEM !! **/
-					$calendar.= str_repeat('<p>' . $dates[$list_day] . '</p>',1);
+					if(isset($dates[$list_day])) {
+						$calendar.= str_repeat('<p>' . $dates[$list_day] . '</p>',1);
+					} else {
+						$calendar.= str_repeat('<p>' . '</p>',2);
+					}
 
 				$calendar.= '</td>';
 				if($running_day == 6):
