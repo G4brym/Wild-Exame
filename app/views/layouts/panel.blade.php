@@ -25,7 +25,7 @@
     {{ HTML::style(URL::to('/packages/panel/css/timeline.css')) }}
 
     <!-- Custom CSS -->
-    {{ HTML::style(URL::to('/packages/panel/css/sb-admin-2.css')) }}
+    {{ HTML::style(URL::to('/packages/panel/css/custom.css')) }}
 
     <!-- Custom Fonts -->
     {{ HTML::style(URL::to('/packages/resources/font-awesome-4.2.0/css/font-awesome.min.css')) }}
@@ -184,7 +184,7 @@
     {{ HTML::script(URL::to('/packages/panel/js/metisMenu/metisMenu.min.js')) }}
 
     <!-- Custom Theme JavaScript -->
-    {{ HTML::script(URL::to('/packages/panel/js/sb-admin-2.js')) }}
+    {{ HTML::script(URL::to('/packages/panel/js/custom.js')) }}
 
 </body>
 

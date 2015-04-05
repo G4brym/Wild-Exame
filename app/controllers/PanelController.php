@@ -93,9 +93,15 @@ class PanelController extends BaseController {
 			}
 			
 			if(isset($input['captchaStatus'])){
-				settings::set("captchaStatus", $input['captchaStatus']);
+				settings::set("captchaStatus", "1");
 			} else {
 				settings::set("captchaStatus", "0");	
+			}
+			
+			if(isset($input['generatePassOnImport'])){
+				settings::set("generatePassOnImport", "1");
+			} else {
+				settings::set("generatePassOnImport", "0");	
 			}
 
 			settings::set("emailtype", $input['emailtype']);
@@ -114,7 +120,7 @@ class PanelController extends BaseController {
 			settings::set("encryptType", $input['encryptType']);
 			
 			if(isset($input['apiStatus'])){
-				settings::set("apiStatus", $input['apiStatus']);
+				settings::set("apiStatus", "1");
 			} else {
 				settings::set("apiStatus", "0");	
 			}
@@ -130,7 +136,7 @@ class PanelController extends BaseController {
 	{
 		Input::merge(array_map('trim', Input::all()));
 		$input = Input::all();
-		$rules = array('name' => 'required', 'day' => 'required', 'month' => 'required');
+		$rules = array('name' => 'required', 'day' => 'required', 'month' => 'required', 'year' => 'required');
 		$v = Validator::make($input, $rules);
 		if ($v->passes())
 		{
@@ -145,6 +151,13 @@ class PanelController extends BaseController {
 			
 			if($input['month'] == 2 && $input['day'] > 29){
 				return Redirect::to(URL::to('admin'))->withInput()->WithErrors("O mês de Fevereiro não pode ter mais que 29 dias");
+			}
+			
+			$currentYear = calendar::getYear();
+			$nextYear = $currentYear + 1;
+			
+			if($input['year'] < $currentYear || $input['year'] > $nextYear){
+				return Redirect::to(URL::to('admin'))->withInput()->WithErrors("O ano deve ser entre ".$currentYear." e ".$nextYear);
 			}
 			
 			especialDates::add($input['name'], $input['day'], $input['month']);

@@ -1,0 +1,5 @@
+TODO
+
+calendario:
+ - quando clicamos no dia do exame aparecer tambem a disciplina
+ - limitar o numero de caracteres que podem aparecer num dia do calendario para não estragar o design

@@ -55,6 +55,20 @@
 							</div>
 						  </div>
 						</div>
+						<div class="form-group">
+						  <label for="generatePassOnImport" class="col-lg-2 control-label">Gerar Password Ao Importar Utilizadores</label>
+						  <div class="col-lg-10">
+							<div class="checkbox">
+							  <label>
+								@if(settings::get("generatePassOnImport")==1)
+								{{ Form::checkbox('generatePassOnImport', 1, true) }}
+								@else
+								{{ Form::checkbox('generatePassOnImport', 1, false) }}
+								@endif
+							  </label>
+							</div>
+						  </div>
+						</div>
 						  
 					  </div>
 					  <div class="tab-pane fade" id="email"><br>
@@ -169,6 +183,7 @@
                                             <th>Nome</th>
                                             <th>Dia</th>
                                             <th>Mês</th>
+                                            <th>Ano</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -182,6 +197,7 @@ if(count($dates)){
 		echo "<td>" . $date->ed_name . "</td>";
 		echo "<td>" . $date->ed_day . "</td>";
 		echo "<td>" . $date->ed_month . "</td>";
+		echo "<td>" . $date->ed_year . "</td>";
 		echo "<td> <button type=\"button\" class=\"btn pull-right btn-danger\" onclick=\"closeTicket".$date->ed_id."()\">Remover</button> </td>";
 		echo "</tr>";
 		echo "<!-- Script do evento -->
@@ -234,8 +250,10 @@ if(!count($dates)){
 <?php
 $days = array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10, 11 => 11, 12 => 12, 13 => 13, 14 => 14, 15 => 15, 16 => 16, 17 => 17, 18 => 18, 19 => 19, 20 => 20, 21 => 21, 22 => 22, 23 => 23, 24 => 24, 25 => 25, 26 => 26, 27 => 27, 28 => 28, 29 => 29, 30 => 30, 31 => 31);
 $months = array(1 => "Janeiro", 2 => "Fevereiro", 3 => "Março", 4 => "Abril", 5 => "Maio", 6 => "Junho", 7 => "Julho", 8 => "Agosto", 9 => "Setembro", 10 => "Outubro", 11 => "Novembro", 12 => "Dezembro");
+$currentYear = calendar::getYear();
+$nextYear = $currentYear + 1;
+$years = array($currentYear => $currentYear, $nextYear => $nextYear);
 ?>
-
 						<div class="form-group">
 						  <label for="day" class="col-lg-2 control-label">Dia</label>
 						  <div class="col-lg-4">
@@ -246,6 +264,12 @@ $months = array(1 => "Janeiro", 2 => "Fevereiro", 3 => "Março", 4 => "Abril", 5
 						  <label for="month" class="col-lg-2 control-label">Mês</label>
 						  <div class="col-lg-4">
 							{{ Form::select('month', $months, null, ['class' => 'form-control']) }}
+						  </div>
+						</div>
+						<div class="form-group">
+						  <label for="year" class="col-lg-2 control-label">Ano</label>
+						  <div class="col-lg-4">
+							{{ Form::select('year', $years, null, ['class' => 'form-control']) }}
 						  </div>
 						</div>
 				  

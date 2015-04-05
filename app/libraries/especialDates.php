@@ -10,6 +10,14 @@ Class especialDates {
 		
     }
 	
+    public static function getListMonth($month, $year){
+
+		$list = DB::table('dates')->where('ed_month', '=', $month)->where('ed_year', '=', $year)->get();
+
+		return $list;
+		
+    }
+	
     public static function remove($id){
 
 		if(especialDates::test($id)){

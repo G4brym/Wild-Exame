@@ -12,6 +12,10 @@ body {
     width: 100%;
 }
 
+.div-inline{ 
+	display:inline-block; 
+}
+
 #page-wrapper {
     padding: 0 15px;
     min-height: 568px;
