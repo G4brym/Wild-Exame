@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 24-Jan-2015 às 17:52
--- Versão do servidor: 5.5.40-0ubuntu0.14.04.1
--- versão do PHP: 5.5.9-1ubuntu4.5
+-- Data de Criação: 07-Dez-2015 às 17:00
+-- Versão do servidor: 5.5.41-0ubuntu0.14.04.1
+-- versão do PHP: 5.5.9-1ubuntu4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,8 +17,31 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de Dados: `laravel`
+-- Base de Dados: `wildexame`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `dates`
+--
+
+CREATE TABLE IF NOT EXISTS `dates` (
+  `ed_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ed_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ed_day` int(11) NOT NULL,
+  `ed_month` int(11) NOT NULL,
+  `ed_year` int(11) NOT NULL,
+  PRIMARY KEY (`ed_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Extraindo dados da tabela `dates`
+--
+
+INSERT INTO `dates` (`ed_id`, `ed_name`, `ed_day`, `ed_month`, `ed_year`) VALUES
+(2, '11-Fev', 11, 2, 2015),
+(3, '25-Fev', 25, 2, 2015);
 
 -- --------------------------------------------------------
 
@@ -126,12 +149,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `name`, `password`, `token`, `remember_token`, `lastlogin`, `admin`, `created_at`, `updated_at`) VALUES
-(1, 'g4bryrm98@hotmail.com', 'Gabriel', '$2y$10$f0mn2mNtWDXzIG18qZyhG.EUZo9vQWt3ceNdvKWEy/ZXA2m.eII3y', '', 'oEuCq20tOrNrvewJinFGYqPT85WZIxsSFIWLyEhwEJ4vHy6nzXIanIqzyaRT', 1422120374, 1, '2014-11-09 21:18:03', '2015-01-24 22:26:14'),
+(1, 'g4bryrm98@hotmail.com', 'Gabriel', '$2y$10$f0mn2mNtWDXzIG18qZyhG.EUZo9vQWt3ceNdvKWEy/ZXA2m.eII3y', '', '2MZEtmxJ8duzrz3CBX3FCiPdv99K3cMfvTFYyl78jb25z3Wb0FmpbZlbFjfr', 1446062136, 1, '2014-11-09 21:18:03', '2015-10-28 23:55:36'),
 (17017, NULL, 'VANESSA CRISTINA DA SILVA ANDRADE', NULL, '0', '', 0, 0, '2015-01-04 04:34:04', '2015-01-04 04:34:04'),
 (17021, NULL, 'RICARDO MICAEL MARQUES ALMEIDA', NULL, '0', '', 0, 0, '2015-01-04 04:34:04', '2015-01-04 04:34:04'),
 (17634, NULL, 'JOÃO SALVADOR GOMES  NEVES', NULL, '0', '', 0, 0, '2015-01-04 04:34:04', '2015-01-04 04:34:04'),
-(17700, '12000@escola.pt', 'GABRIEL RINO MASSADAS', '$2y$10$f0mn2mNtWDXzIG18qZyhG.EUZo9vQWt3ceNdvKWEy/ZXA2m.eII3y', '0', '7NNxcWCbBuUwLlznSUIOk98VIurE4uEwDS4aGri9NuC6YD0F9TefrNtPBvuo', 0, 0, '2015-01-04 04:34:04', '2015-01-22 01:40:37'),
-(18255, NULL, 'RAFAEL CALÔBA VERDADE', '$2y$10$f0mn2mNtWDXzIG18qZyhG.EUZo9vQWt3ceNdvKWEy/ZXA2m.eII3y', '0', '', 1422103545, 0, '2015-01-04 04:34:04', '2015-01-24 17:45:45'),
+(17700, '12000@escola.pt', 'GABRIEL RINO MASSADAS', '$2y$10$f0mn2mNtWDXzIG18qZyhG.EUZo9vQWt3ceNdvKWEy/ZXA2m.eII3y', '0', 'IZ1MdyIa3V7NxFJq8I5ReWhkYh4GNHtfI2s8DAr4KJAQM9lK95NIxTD6LuaC', 1424445119, 0, '2015-01-04 04:34:04', '2015-02-20 20:12:18'),
+(18255, NULL, 'RAFAEL CALÔBA VERDADE', '$2y$10$f0mn2mNtWDXzIG18qZyhG.EUZo9vQWt3ceNdvKWEy/ZXA2m.eII3y', '0', '8KFLI6oEKdIcn6Z1rWeRewmMrQ6uGH9n78gNfKXWSM4E86F9LUHw7DiPFVak', 1443106908, 0, '2015-01-04 04:34:04', '2015-09-24 19:02:16'),
 (20030, '12001@escola.pt', 'DANIEL ABRANTES MARTINS', '$2y$10$hcInaACjRzVhMxSi3sXvweVZEn7w/cYlmwnF6IUq.G2b74QMY/74e', '0', '', 0, 0, '2015-01-04 04:34:04', '2015-01-04 04:34:04'),
 (20050, NULL, 'BEATRIZ ALEXANDRA MAXIMIANO ABRANTES', NULL, '0', '', 0, 0, '2015-01-04 04:34:04', '2015-01-04 04:34:04'),
 (23126, NULL, 'ANA BEATRIZ RODRIGUES FIGUEIREDO', NULL, '0', '', 0, 0, '2015-01-04 04:34:04', '2015-01-04 04:34:04'),
@@ -148,7 +171,8 @@ CREATE TABLE IF NOT EXISTS `usersmods` (
   `um_id` int(11) NOT NULL AUTO_INCREMENT,
   `um_mod` int(11) NOT NULL,
   `um_user` int(11) NOT NULL,
-  `um_grade` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `um_grade` float DEFAULT NULL,
+  `um_date` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`um_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
@@ -156,10 +180,10 @@ CREATE TABLE IF NOT EXISTS `usersmods` (
 -- Extraindo dados da tabela `usersmods`
 --
 
-INSERT INTO `usersmods` (`um_id`, `um_mod`, `um_user`, `um_grade`) VALUES
-(1, 1, 18255, NULL),
-(2, 4, 18255, NULL),
-(3, 6, 18255, NULL);
+INSERT INTO `usersmods` (`um_id`, `um_mod`, `um_user`, `um_grade`, `um_date`) VALUES
+(1, 1, 18255, NULL, '1'),
+(2, 4, 18255, NULL, '3'),
+(3, 6, 18255, NULL, '3');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
