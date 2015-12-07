@@ -316,6 +316,24 @@ table.dataTable thead .sorting:after {
     color: #3d8b3d;
 }
 
+.panel-blue {
+    border-color: #428bca;
+}
+
+.panel-blue .panel-heading {
+    border-color: #428bca;
+    color: #fff;
+    background-color: #428bca;
+}
+
+.panel-blue a {
+    color: #428bca;
+}
+
+.panel-blue a:hover {
+    color: #1565c0;
+}
+
 .panel-red {
     border-color: #d9534f;
 }
@@ -350,4 +368,4 @@ table.dataTable thead .sorting:after {
 
 .panel-yellow a:hover {
     color: #df8a13;
-}s
+}

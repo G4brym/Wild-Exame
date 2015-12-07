@@ -45,7 +45,6 @@ Route::group(array('before' => 'auth'), function()
 
     //Metodos Post
     Route::post('changePW', array('before'=>'csrf', 'as' => 'changePW', 'uses'=>'HomeController@changePW'));
-    Route::post('tkcreate', array('before'=>'csrf', 'as' => 'tkcreate', 'uses'=>'PanelController@postTkCreate'));
     Route::post('tkmessage', array('before'=>'csrf', 'as' => 'tkmessage', 'uses'=>'PanelController@postTkMessage'));
     Route::post('markExame', array('before'=>'csrf', 'as' => 'markExame', 'uses'=>'PanelController@markExame'));
 });

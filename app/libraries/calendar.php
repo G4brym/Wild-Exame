@@ -35,7 +35,11 @@ Class calendar {
 					/* add in the day number */
 					$calendar.= '<div class="day-number">'.$list_day.'</div>';
 
-					$calendar.= str_repeat('<p>' . $dates[$list_day] . '</p>',1);
+					if(strlen($dates[$list_day]) > 12){
+						$calendar.= str_repeat('<p>' . substr($dates[$list_day], 0, 12) . '...</p>',1);
+					} else {
+						$calendar.= str_repeat('<p>' . $dates[$list_day] . '</p>',1);	
+					}
 					
 				} else {
 					$calendar.= '<td class="calendar-day">';
@@ -58,7 +62,7 @@ Class calendar {
 			endfor;
 
 			/* finish the rest of the days in the week */
-			if($days_in_this_week < 8):
+			if($days_in_this_week < 7):
 				for($x = 1; $x <= (8 - $days_in_this_week); $x++):
 					$calendar.= '<td class="calendar-day-np"> </td>';
 				endfor;
@@ -70,6 +74,8 @@ Class calendar {
 			/* end the table */
 			$calendar.= '</table>';
 
+			$calendar = str_replace('<td class="calendar-day-np"> </td><td class="calendar-day-np"> </td><td class="calendar-day-np"> </td><td class="calendar-day-np"> </td><td class="calendar-day-np"> </td><td class="calendar-day-np"> </td><td class="calendar-day-np"> </td>', "", $calendar);
+		
 			/* all done, return result */
 			return $calendar;
 	}

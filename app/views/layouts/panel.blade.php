@@ -75,18 +75,18 @@
             <br>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-primary">
+                    <div class="panel panel-blue">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-pencil-square-o fa-5x"></i>
+                                    <i class="fa fa-calendar fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div>Marcar Exames</div>
+                                    <div>Ver Calendario</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="{{URL::to('/exams')}}">
+                        <a href="{{URL::to('/calendar')}}">
                             <div class="panel-footer">
                                 <span class="pull-left">Ver</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

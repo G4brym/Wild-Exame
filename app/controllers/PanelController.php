@@ -50,11 +50,7 @@ class PanelController extends BaseController {
 				return Redirect::to(URL::to('exams'))->withInput()->WithErrors('Ocorreu Um Erro Com A Marcação Do Exame');
 			}
 			
-			if(DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_mod', '=', $input['module'])->update(array('um_date' => $input['date']))) {
-				return Redirect::to(URL::to('exams'))->With('success', '1');
-			} else {
-				return Redirect::to(URL::to('exams'))->With('success', $input['module']. ' '. Auth::user()->id);
-			}
+			DB::table('usersmods')->where('um_user', '=', Auth::user()->id)->where('um_mod', '=', $input['module'])->update(array('um_date' => $input['date']));
 			
 			return Redirect::to(URL::to('exams'))->With('success', 'Exame Marcado');
 			
